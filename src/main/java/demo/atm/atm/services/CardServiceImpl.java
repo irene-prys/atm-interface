@@ -5,6 +5,9 @@ import demo.atm.atm.repositories.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class CardServiceImpl implements CardService{
     @Autowired
@@ -12,6 +15,7 @@ public class CardServiceImpl implements CardService{
 
     @Override
     public Card create(Card card) {
+        card.setPinCodeSalt(generateSalt());
         return cardRepository.save(card);
     }
 
@@ -21,6 +25,7 @@ public class CardServiceImpl implements CardService{
         Card card = new Card();
         card.setCardNumber(cardNumber);
         card.setPinCode(pinCode);
+        card.setPinCodeSalt(generateSalt());
         return cardRepository.save(card);
     }
 
@@ -49,6 +54,11 @@ public class CardServiceImpl implements CardService{
     }
 
     @Override
+    public List<Card> findAll() {
+        return cardRepository.findAll();
+    }
+
+    @Override
     public Card block(String cardNumber) {
         return block(cardNumber, true);
     }
@@ -63,5 +73,9 @@ public class CardServiceImpl implements CardService{
         Card card = find(cardNumber);
         card.setBlocked(blockMarker);
         return cardRepository.save(card);
+    }
+
+    private String generateSalt() {// todo: think over moving to card
+        return UUID.randomUUID().toString();
     }
 }
