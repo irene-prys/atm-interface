@@ -1,4 +1,4 @@
-package demo.atm.atm.domains;
+package demo.atm.domains;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

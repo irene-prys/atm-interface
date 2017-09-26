@@ -1,4 +1,4 @@
-package demo.atm.atm.domains;
+package demo.atm.domains;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

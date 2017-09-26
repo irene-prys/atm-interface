@@ -1,6 +1,6 @@
-package demo.atm.atm.services;
+package demo.atm.services;
 
-import demo.atm.atm.domains.Card;
+import demo.atm.domains.Card;
 
 import java.util.List;
 

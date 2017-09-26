@@ -1,4 +1,4 @@
-package demo.atm.atm.services;
+package demo.atm.services;
 
 public interface OperationHistoryService {
 }

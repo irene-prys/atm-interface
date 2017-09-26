@@ -1,7 +1,7 @@
-package demo.atm.atm;
+package demo.atm;
 
-import demo.atm.atm.domains.Card;
-import demo.atm.atm.services.CardService;
+import demo.atm.domains.Card;
+import demo.atm.services.CardService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -205,14 +204,14 @@ public class CardServiceTests {
         assertTrue(foundCards.stream().filter(c->cardNumbers.contains(c.getCardNumber())).count() == cardNumbers.size());
     }
 
-    //list
+    //todo: list
 
-    //should store pinCode as hash
-    // should verify pinCode of card
+    //todo: should store pinCode as hash
+    // todo: should verify pinCode of card
 
 
-    // verify card number
-    //verify pin:
+    // todo: verify card number
+    //todo: verify pin
 
     private Card newCard(Long id, String cardNumber,
                          String pinCode, String salt,

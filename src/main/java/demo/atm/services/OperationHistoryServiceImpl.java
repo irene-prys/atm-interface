@@ -1,6 +1,6 @@
-package demo.atm.atm.services;
+package demo.atm.services;
 
-import demo.atm.atm.repositories.OperationHistoryRepository;
+import demo.atm.repositories.OperationHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

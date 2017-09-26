@@ -1,6 +1,6 @@
-package demo.atm.atm;
+package demo.atm;
 
-import demo.atm.atm.utils.DefaultDataInitializer;
+import demo.atm.utils.DefaultDataInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -8,7 +8,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
-public class AtmApplication extends SpringBootServletInitializer {// todo: rename package
+public class AtmApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

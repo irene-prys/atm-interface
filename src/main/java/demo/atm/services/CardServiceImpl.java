@@ -1,7 +1,7 @@
-package demo.atm.atm.services;
+package demo.atm.services;
 
-import demo.atm.atm.domains.Card;
-import demo.atm.atm.repositories.CardRepository;
+import demo.atm.domains.Card;
+import demo.atm.repositories.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package demo.atm.atm.rest;
+package demo.atm.rest;
 
-import demo.atm.atm.domains.Card;
-import demo.atm.atm.services.CardService;
+import demo.atm.domains.Card;
+import demo.atm.services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
