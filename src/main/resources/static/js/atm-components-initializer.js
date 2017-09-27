@@ -12,6 +12,7 @@ let applyAtmInputSettings = function () {
         applySettingsToCardNumberComponents();
         applySettingsForClearButtons();
         applySettingsToPinCodeComponents();
+        applySettingsToCancelButton();
     }
 
     function applySettingsToCardNumberComponents() {
@@ -25,6 +26,15 @@ let applyAtmInputSettings = function () {
                     inputElement.value += '-';
                 }
             });
+        }
+    }
+
+    function applySettingsToCancelButton() {
+        let cancelBtn = document.body.querySelector(".atm-cancel-btn");// todo: implement for all
+        if(cancelBtn) {
+            cancelBtn.onclick = function() {
+                window.history.back();
+            };
         }
     }
 

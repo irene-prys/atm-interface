@@ -30,6 +30,9 @@
         </div>
 
         <div class="container col-sm-10 atm-keyboard-component"></div>
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-warning atm-cancel-btn float-right mt-3">Cancel</button>
+        </div>
     </div>
 </body>
 </html>
