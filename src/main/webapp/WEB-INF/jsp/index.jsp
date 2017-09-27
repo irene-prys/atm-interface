@@ -16,7 +16,7 @@
               <label for="inputEmail3" class="col-sm-2 col-form-label">Card Number</label>
               <div class="col-sm-3">
                 <div class="input-group">
-                  <input class="form-control atm-keyboard-input" type="text" placeholder="1111-1111-1111-1111">
+                  <input class="form-control atm-keyboard-input" type="text" placeholder="1111-1111-1111-1111" maxlength='15'>
                   <span class="input-group-btn">
                     <button class="btn btn-secondary" type="button">Clear</button>
                   </span>
