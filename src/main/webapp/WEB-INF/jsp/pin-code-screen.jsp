@@ -12,17 +12,15 @@
 <body>
     <div class="container atm-keyboard-group-container mt-4">
         <div class="container">
-          <form action="/card" method="POST">
+          <form action="/card/pin" method="POST">
             <div class="form-group row">
-              <label for="atmCardNumber" class="col-form-label">Card Number</label>
-              <div class="col-sm-4">
+              <label for="pinCode" class="col-form-label">Card Number</label>
+              <div class="col-sm-2">
                 <div class="input-group">
-                  <input class="form-control atm-keyboard-input atm-card-number" type="text"
-                         placeholder="1111-1111-1111-1111" maxlength='19'
-                         name="atmCardNumber"
-                         id="atmCardNumber">
+                  <input class="form-control atm-keyboard-input atm-card-pin" type="password"
+                         maxlength='4' name="pinCode" id="pinCode">
                   <span class="input-group-btn">
-                    <button class="btn btn-secondary clear-atm-input" type="button" for="atmCardNumber">Clear</button>
+                    <button class="btn btn-secondary clear-atm-input" type="button" for="pinCode">Clear</button>
                   </span>
                 </div>
               </div>
@@ -31,7 +29,7 @@
           </form>
         </div>
 
-        <div class="container col-sm-9 atm-keyboard-component"></div>
+        <div class="container col-sm-10 atm-keyboard-component"></div>
     </div>
 </body>
 </html>

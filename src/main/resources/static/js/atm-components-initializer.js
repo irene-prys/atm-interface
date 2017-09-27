@@ -11,19 +11,33 @@ let applyAtmInputSettings = function () {
     function applySettings() {
         applySettingsToCardNumberComponents();
         applySettingsForClearButtons();
+        applySettingsToPinCodeComponents();
     }
 
     function applySettingsToCardNumberComponents() {
         let atmCardNumberComponents = document.body.querySelectorAll('.atm-card-number');
         for(let i = 0; i < atmCardNumberComponents.length; i++) {
             let inputElement = atmCardNumberComponents[i];
+            invalidateSendButton(inputElement);
             inputElement.addEventListener('textChanged', function (e) {
+                invalidateSendButton(inputElement);
                 if(isSeparatorNeeded(inputElement.value.length, inputElement.maxLength)) {
                     inputElement.value += '-';
                 }
             });
         }
     }
+
+    function applySettingsToPinCodeComponents() {
+            let atmCardNumberComponents = document.body.querySelectorAll('.atm-card-pin');
+            for(let i = 0; i < atmCardNumberComponents.length; i++) {
+                let inputElement = atmCardNumberComponents[i];
+                invalidateSendButton(inputElement);
+                inputElement.addEventListener('textChanged', function (e) {
+                    invalidateSendButton(inputElement);
+                });
+            }
+        }
 
     function applySettingsForClearButtons() {
         let clearButtons = document.body.querySelectorAll('.clear-atm-input');
@@ -32,9 +46,17 @@ let applyAtmInputSettings = function () {
                 let inputElement = document.getElementById(clearButtons[i].getAttribute("for"));
                 if(inputElement) {
                     inputElement.value = "";
+                    invalidateSendButton(inputElement);
                 }
             }
         }
+    }
+
+    function invalidateSendButton(inputElement) {
+        let keyboardGroupContainer = inputElement.closest(".atm-keyboard-group-container");
+        let sendBtnElement = keyboardGroupContainer.querySelector(".atm-send-btn");
+        let disable = inputElement.maxLength !== -1 && inputElement.value.length < inputElement.maxLength;// if input is full then disable
+        sendBtnElement.disabled = disable;
     }
 
     function isSeparatorNeeded(currentLength, maxLength) {

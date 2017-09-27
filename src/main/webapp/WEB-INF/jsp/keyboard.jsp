@@ -1,4 +1,4 @@
-<div class="container col-sm-8">
+<div class="container col-sm-8 atm-keyboard-buttons-container">
     <div class="container">
         <button type="button" class="btn btn-outline-success">1</button>
         <button type="button" class="btn btn-outline-success">2</button>
