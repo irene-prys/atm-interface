@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="/js/keyboard-component.js"></script>
     <script src="/js/keyboard.js"></script>
+    <script src="/js/atm-components-initializer.js"></script>
+
 
 </head>
 <body>
@@ -13,10 +15,10 @@
         <div class="container">
           <form>
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label">Card Number</label>
-              <div class="col-sm-3">
+              <label for="inputCardNumber" class="col-sm-2 col-form-label">Card Number</label>
+              <div class="col-sm-4">
                 <div class="input-group">
-                  <input class="form-control atm-keyboard-input" type="text" placeholder="1111-1111-1111-1111" maxlength='15'>
+                  <input class="form-control atm-keyboard-input atm-card-number" type="text" placeholder="1111-1111-1111-1111" maxlength='19'>
                   <span class="input-group-btn">
                     <button class="btn btn-secondary" type="button">Clear</button>
                   </span>

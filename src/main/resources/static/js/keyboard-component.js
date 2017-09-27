@@ -29,8 +29,10 @@ class KeyboardComponent {
         let buttons = this._el.querySelectorAll('button');
         for(let i = 0; i < buttons.length; i++) {
             buttons[i].onclick = function() {
-                if(keyboardInputComponent.maxLength === -1 || keyboardInputComponent.value.length <= keyboardInputComponent.maxLength) {
+
+                if(keyboardInputComponent.maxLength === -1 || keyboardInputComponent.value.length < keyboardInputComponent.maxLength) {
                     keyboardInputComponent.value += buttons[i].innerText;
+                    keyboardInputComponent.dispatchEvent(new Event('textChanged'));
                 }
             };
         }
