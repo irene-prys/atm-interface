@@ -15,12 +15,14 @@
         <div class="container">
           <form>
             <div class="form-group row">
-              <label for="inputCardNumber" class="col-sm-2 col-form-label">Card Number</label>
+              <label for="atmCardNumber" class="col-sm-2 col-form-label">Card Number</label>
               <div class="col-sm-4">
                 <div class="input-group">
-                  <input class="form-control atm-keyboard-input atm-card-number" type="text" placeholder="1111-1111-1111-1111" maxlength='19'>
+                  <input class="form-control atm-keyboard-input atm-card-number" type="text"
+                         placeholder="1111-1111-1111-1111" maxlength='19'
+                         id="atmCardNumber">
                   <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button">Clear</button>
+                    <button class="btn btn-secondary clear-atm-input" type="button" for="atmCardNumber">Clear</button>
                   </span>
                 </div>
               </div>

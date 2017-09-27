@@ -22,14 +22,13 @@ class KeyboardComponent {
                                   <button type="button" class="btn btn-outline-success">0</button>
                               </div>`;
 
-        this._addEventHandlers(keyboardInputComponent);
+        this._addButtonsEventHandlers(keyboardInputComponent);
     }
 
-    _addEventHandlers(keyboardInputComponent) {// todo: think over the name
+    _addButtonsEventHandlers(keyboardInputComponent) {// todo: think over the name
         let buttons = this._el.querySelectorAll('button');
         for(let i = 0; i < buttons.length; i++) {
             buttons[i].onclick = function() {
-
                 if(keyboardInputComponent.maxLength === -1 || keyboardInputComponent.value.length < keyboardInputComponent.maxLength) {
                     keyboardInputComponent.value += buttons[i].innerText;
                     keyboardInputComponent.dispatchEvent(new Event('textChanged'));

@@ -10,6 +10,7 @@ let applyAtmInputSettings = function () {
 
     function applySettings() {
         applySettingsToCardNumberComponents();
+        applySettingsForClearButtons();
     }
 
     function applySettingsToCardNumberComponents() {
@@ -24,10 +25,23 @@ let applyAtmInputSettings = function () {
         }
     }
 
+    function applySettingsForClearButtons() {
+        let clearButtons = document.body.querySelectorAll('.clear-atm-input');
+        for(let i = 0; i < clearButtons.length; i++) {
+            clearButtons[i].onclick = function() {
+                let inputElement = document.getElementById(clearButtons[i].getAttribute("for"));
+                if(inputElement) {
+                    inputElement.value = "";
+                }
+            }
+        }
+    }
+
     function isSeparatorNeeded(currentLength, maxLength) {
         if(maxLength !== -1 && currentLength >= maxLength) {
             return false;
         }
+
         let countOfSegments = Math.floor(currentLength/CARD_NUMBER_SEGMENT_SIZE);
         let countOfSeparators = currentLength%CARD_NUMBER_SEGMENT_SIZE;
         return countOfSeparators + 1 === countOfSegments;
