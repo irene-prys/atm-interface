@@ -23,7 +23,7 @@ public interface CardService {
 
     Card unblock(String cardNumber);
 
-    void updateTries(Card card);
+    void updatePinCodeTries(Card card);
 
-    void resetTries(Card card);
+    void resetPinCodeTries(Card card);
 }

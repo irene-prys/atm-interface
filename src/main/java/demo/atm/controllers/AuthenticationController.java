@@ -12,26 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping("/card")
 public class AuthenticationController {
-    private final static String CARD_NUMBER_ATTRIBUTE_NAME = "cardNumber";
-
     @Autowired
     private AuthenticationService authenticationService;
 
-    @RequestMapping("/")//todo: first screen should be different: redirect to input card if needed
-    public String index(HttpSession session) {
-        return "index";
-    }
-
-    @RequestMapping("/cancel")
-    public String cancel(HttpSession session) {
-        session.removeAttribute(CARD_NUMBER_ATTRIBUTE_NAME);
-        return "index";
-    }
-
-    @RequestMapping(value = "/card/number", method = RequestMethod.POST)
+    @RequestMapping(value = "/number", method = RequestMethod.POST)
     public String sendCreditCardNumber(@RequestParam String atmCardNumber, Model model, HttpSession session) {
-        session.removeAttribute(CARD_NUMBER_ATTRIBUTE_NAME);
+        session.removeAttribute(AtmController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME);
 
         try {
             authenticationService.findCard(atmCardNumber);
@@ -40,14 +28,14 @@ public class AuthenticationController {
             return "card-number-exceprion";
         }
 
-        session.setAttribute(CARD_NUMBER_ATTRIBUTE_NAME, atmCardNumber);
+        session.setAttribute(AtmController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME, atmCardNumber);
         return "pin-code-screen";
     }
 
-    @RequestMapping(value = "/card/pin", method = RequestMethod.POST)
+    @RequestMapping(value = "/pin", method = RequestMethod.POST)
     public String sendPinCode(@RequestParam String pinCode, Model model, HttpSession session) {
         try {
-            authenticationService.findCard((String) session.getAttribute(CARD_NUMBER_ATTRIBUTE_NAME), pinCode);
+            authenticationService.findCard((String) session.getAttribute(AtmController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME), pinCode);
         } catch (AuthenticationException e) {
             model.addAttribute("error", e.getMessage());
             return "pin-code-screen";
@@ -55,9 +43,8 @@ public class AuthenticationController {
         return "cabinet";
     }
 
-    @RequestMapping(value = {"/*", "/card/*"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/*", method = RequestMethod.GET)
     public String defaultPage() {
         return "index";
     }
-
 }
