@@ -33,21 +33,21 @@ let applyAtmInputSettings = function () {
         let cancelBtn = document.body.querySelector(".atm-cancel-btn");// todo: implement for all
         if(cancelBtn) {
             cancelBtn.onclick = function() {
-                window.history.back();
+                clearHistoryAndGoToIndex();
             };
         }
     }
 
     function applySettingsToPinCodeComponents() {
-            let atmCardNumberComponents = document.body.querySelectorAll('.atm-card-pin');
-            for(let i = 0; i < atmCardNumberComponents.length; i++) {
-                let inputElement = atmCardNumberComponents[i];
+        let atmCardNumberComponents = document.body.querySelectorAll('.atm-card-pin');
+        for(let i = 0; i < atmCardNumberComponents.length; i++) {
+            let inputElement = atmCardNumberComponents[i];
+            invalidateSendButton(inputElement);
+            inputElement.addEventListener('textChanged', function (e) {
                 invalidateSendButton(inputElement);
-                inputElement.addEventListener('textChanged', function (e) {
-                    invalidateSendButton(inputElement);
-                });
-            }
+            });
         }
+    }
 
     function applySettingsForClearButtons() {
         let clearButtons = document.body.querySelectorAll('.clear-atm-input');
@@ -77,6 +77,14 @@ let applyAtmInputSettings = function () {
         let countOfSegments = Math.floor(currentLength/CARD_NUMBER_SEGMENT_SIZE);
         let countOfSeparators = currentLength%CARD_NUMBER_SEGMENT_SIZE;
         return countOfSeparators + 1 === countOfSegments;
+    }
+
+    function clearHistoryAndGoToIndex(){
+        for (i = 0; i < window.history.length; i++) {
+            history.pushState({}, '');
+        }
+        history.pushState({}, '', '/');
+        window.location = "/cancel";
     }
 };
 

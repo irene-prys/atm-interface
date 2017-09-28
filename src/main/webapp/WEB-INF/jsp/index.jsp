@@ -12,7 +12,7 @@
 <body>
     <div class="container atm-keyboard-group-container mt-4">
         <div class="container">
-          <form action="/card" method="POST">
+          <form action="/card/number" method="POST">
             <div class="form-group row">
               <label for="atmCardNumber" class="col-form-label">Card Number</label>
               <div class="col-sm-4">

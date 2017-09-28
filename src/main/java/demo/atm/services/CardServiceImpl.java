@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class CardServiceImpl implements CardService{
+public class CardServiceImpl implements CardService {
     @Autowired
     private CardRepository cardRepository;
 
@@ -80,12 +80,18 @@ public class CardServiceImpl implements CardService{
     }
 
     @Override
-    public void updateTries(Card card) {
-        if(card.getPinTries() < Card.MAX_NUMBER_OF_PIN_TRIES) {
+    public void updateTries(Card card) {// todo: rename
+        if (card.getPinTries() < Card.MAX_NUMBER_OF_PIN_TRIES) {
             card.setPinTries(card.getPinTries() + 1);
         } else {
             card.setBlocked(true);
         }
+        cardRepository.save(card);
+    }
+
+    @Override
+    public void resetTries(Card card) {
+        card.setPinTries(0);
         cardRepository.save(card);
     }
 

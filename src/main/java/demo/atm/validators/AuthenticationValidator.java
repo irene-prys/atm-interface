@@ -2,12 +2,14 @@ package demo.atm.validators;
 
 import demo.atm.domains.Card;
 import demo.atm.utils.PasswordGenerator;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-public class CardValidator {
+@Service
+public class AuthenticationValidator {
 
-    public static Optional<String> validateCardNumber(Card card) {
+    public Optional<String> validateCardNumber(Card card) {
         if (card == null) {
             return Optional.of("Card not found");
         }
@@ -20,9 +22,12 @@ public class CardValidator {
         return Optional.empty();
     }
 
-    public static boolean isPinValid(Card card, String pinCode) {
+    public Optional<String> validatePinCode(Card card, String pinCode) {
         String enteredPin = PasswordGenerator.hashPassword(pinCode, card.getPinCodeSalt());
-        return card.getPinCode().equals(enteredPin);
+        if (!card.getPinCode().equals(enteredPin)) {
+            return Optional.of("Pin code is invalid");
+        }
+        return Optional.empty();
     }
 
 }
