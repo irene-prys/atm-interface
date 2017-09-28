@@ -2,6 +2,7 @@ package demo.atm.services;
 
 import demo.atm.domains.Card;
 import demo.atm.repositories.CardRepository;
+import demo.atm.utils.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,11 @@ public class CardServiceImpl implements CardService{
         //todo: validate fields, check if exists
         Card card = new Card();
         card.setCardNumber(cardNumber);
-        card.setPinCode(pinCode);
-        card.setPinCodeSalt(generateSalt());
+
+        String salt = generateSalt();
+        card.setPinCode(PasswordGenerator.hashPassword(pinCode, salt));
+        card.setPinCodeSalt(salt);
+
         return cardRepository.save(card);
     }
 
@@ -73,6 +77,16 @@ public class CardServiceImpl implements CardService{
         Card card = find(cardNumber);
         card.setBlocked(blockMarker);
         return cardRepository.save(card);
+    }
+
+    @Override
+    public void updateTries(Card card) {
+        if(card.getPinTries() < Card.MAX_NUMBER_OF_PIN_TRIES) {
+            card.setPinTries(card.getPinTries() + 1);
+        } else {
+            card.setBlocked(true);
+        }
+        cardRepository.save(card);
     }
 
     private String generateSalt() {// todo: think over moving to card

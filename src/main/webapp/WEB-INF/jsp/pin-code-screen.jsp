@@ -34,6 +34,11 @@
             <button type="button" class="btn btn-warning atm-cancel-btn float-right mt-3">Cancel</button>
         </div>
     </div>
+    <c:if test="${error}">
+          <div class="container col-sm-10 row mt-5 ">
+              <h3 class='col-sm-6 text-right'>${error}</h3>
+          </div>
+      </c:if>
 </body>
 </html>
 

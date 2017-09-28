@@ -7,6 +7,8 @@ import javax.persistence.Id;
 
 @Entity
 public class Card {
+    public static final int MAX_NUMBER_OF_PIN_TRIES = 4;
+
     @Id
     @GeneratedValue
     private Long id;
@@ -17,6 +19,7 @@ public class Card {
     private String pinCodeSalt;
     private boolean blocked;
     private boolean deleted;
+    private int pinTries = 0;
 
     public Long getId() {
         return id;
@@ -64,5 +67,13 @@ public class Card {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public int getPinTries() {
+        return pinTries;
+    }
+
+    public void setPinTries(int pinTries) {
+        this.pinTries = pinTries;
     }
 }

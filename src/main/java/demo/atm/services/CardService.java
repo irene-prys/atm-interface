@@ -14,4 +14,5 @@ public interface CardService  {
     List<Card> findAll();
     Card block(String cardNumber);
     Card unblock(String cardNumber);
+    void updateTries(Card card);
 }
