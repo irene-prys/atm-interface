@@ -17,7 +17,7 @@
 
     <div class="container atm-keyboard-group-container mt-4">
         <div class="container">
-          <form action="/card/pin" method="POST" class="atm-form">
+          <form action="/card/pin" method="POST" class="atm-auth-form">
             <div class="form-group row">
               <label for="pinCode" class="col-form-label">Card Number</label>
               <div class="col-sm-2">

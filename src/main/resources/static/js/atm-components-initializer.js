@@ -13,6 +13,7 @@ let applyAtmInputSettings = function () {
         applySettingsForClearButtons();
         applySettingsToPinCodeComponents();
         applySettingsToCancelButton();
+        applyFormSettings();
     }
 
     function applySettingsToCardNumberComponents() {
@@ -30,11 +31,13 @@ let applyAtmInputSettings = function () {
     }
 
     function applySettingsToCancelButton() {
-        let cancelBtn = document.body.querySelector(".atm-cancel-btn");// todo: implement for all
-        if(cancelBtn) {
-            cancelBtn.onclick = function() {
-                clearHistoryAndGoToIndex();
-            };
+        let cancelBtns = document.body.querySelectorAll(".atm-cancel-btn");
+        for(let i = 0; i < cancelBtns.length; i++) {
+            if(cancelBtns[i]) {
+                cancelBtns[i].onclick = function() {
+                    clearHistoryAndGoToIndex();
+                };
+            }
         }
     }
 
@@ -69,6 +72,15 @@ let applyAtmInputSettings = function () {
         sendBtnElement.disabled = disable;
     }
 
+    function applyFormSettings(){
+        let forms = document.body.querySelectorAll('.atm-auth-form');
+        for(let i = 0; i < forms.length; i++) {
+            forms[i].onsubmit = function () {
+                clearHistory();
+            };
+        }
+    }
+
     function isSeparatorNeeded(currentLength, maxLength) {
         if(maxLength !== -1 && currentLength >= maxLength) {
             return false;
@@ -79,12 +91,17 @@ let applyAtmInputSettings = function () {
         return countOfSeparators + 1 === countOfSegments;
     }
 
-    function clearHistoryAndGoToIndex(){
+    function clearHistoryAndGoToIndex() {
+        clearHistory();
+        window.location = "/cancel";
+    }
+
+    function clearHistory() {
         for (i = 0; i < window.history.length; i++) {
             history.pushState({}, '');
         }
         history.pushState({}, '', '/');
-        window.location = "/cancel";
+        window.location.replace(window.location.href);
     }
 };
 
