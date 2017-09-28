@@ -22,10 +22,10 @@ class KeyboardComponent {
                                   <button type="button" class="btn btn-outline-success">0</button>
                               </div>`;
 
-        this._addButtonsEventHandlers(keyboardInputComponent);
+        this._addEventHandlersForButtons(keyboardInputComponent);
     }
 
-    _addButtonsEventHandlers(keyboardInputComponent) {// todo: think over the name
+    _addEventHandlersForButtons(keyboardInputComponent) {
         let buttons = this._el.querySelectorAll('button');
         for(let i = 0; i < buttons.length; i++) {
             buttons[i].onclick = function() {

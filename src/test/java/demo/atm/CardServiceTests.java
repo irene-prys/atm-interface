@@ -82,6 +82,7 @@ public class CardServiceTests {
 
     // check all not null fields
     // check number has length and numbers inside
+    //todo: test pin tries
 
     @Test
     public void shouldMarkAsDeleted() {
