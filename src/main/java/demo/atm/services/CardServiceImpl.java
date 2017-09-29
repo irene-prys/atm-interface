@@ -17,6 +17,7 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card create(Card card) {
         card.setPinCodeSalt(generateSalt());
+        card.setPinCode(PasswordGenerator.hashPassword(card.getPinCode(), card.getPinCodeSalt()));
         return cardRepository.save(card);
     }
 
@@ -34,14 +35,8 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card update(Card card) {
-        //todo: handle when card not exists
-        return cardRepository.save(card);
-    }
-
-    @Override
     public Card delete(long cardId) {
-        //todo: handle when card not exists
+        //todo: handle situation when card not exists
         Card card = cardRepository.findOne(cardId);
         card.setDeleted(true);
         return cardRepository.save(card);
@@ -63,19 +58,17 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card block(String cardNumber) {
-        return block(cardNumber, true);
+    public Card block(String cardNumber) { // todo: add test
+        Card card = find(cardNumber);
+        card.setBlocked(true);
+        return cardRepository.save(card);
     }
 
     @Override
-    public Card unblock(String cardNumber) {
-        return block(cardNumber, false);
-    }
-
-    private Card block(String cardNumber, boolean blockMarker) {
-        //todo: handle when card not exists
+    public Card unblock(String cardNumber) {// todo: add test
         Card card = find(cardNumber);
-        card.setBlocked(blockMarker);
+        card.setBlocked(true);
+        card.setPinTries(0);
         return cardRepository.save(card);
     }
 

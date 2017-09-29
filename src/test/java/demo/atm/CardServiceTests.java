@@ -124,34 +124,6 @@ public class CardServiceTests {
         assertFalse(card.isBlocked());
     }
 
-    //update
-    @Test
-    public void shouldUpdate() {
-        //given
-        String cardNumber = "1234-5678-9012-3458";
-        String pinCode = "3221";
-        Card card = newCard(null, cardNumber, pinCode, "world", false, false);
-        cardService.create(card);
-        assertNotNull(card.getId());
-
-        cardNumber = "1234-5678-9012-3459";
-        pinCode = "3222";
-        String salt = "hello";
-        Card card2 = newCard(card.getId(), cardNumber, pinCode, salt, true, true);
-
-        //when
-        cardService.update(card2);
-
-        //then
-        card = cardService.find(card.getId());
-        assertEquals(cardNumber, card.getCardNumber());
-        assertEquals(pinCode, card.getPinCode());// todo: wrong! need to hash + solid
-        assertTrue(card.isBlocked());
-        assertTrue(card.isDeleted());
-        assertEquals(salt, card.getPinCodeSalt());
-
-    }
-
     @Test
     public void shouldFindByCardNumber() {
         String cardNumber = "1234-5678-9012-3460";

@@ -14,12 +14,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/card")
 public class AuthenticationController {
+    public final static String SESSION_CARD_NUMBER_ATTRIBUTE_NAME = "cardNumber";// think over moving to a more appropriate place
+
     @Autowired
     private AuthenticationService authenticationService;
 
     @RequestMapping(value = "/number", method = RequestMethod.POST)
     public String sendCreditCardNumber(@RequestParam String atmCardNumber, Model model, HttpSession session) {
-        session.removeAttribute(AtmController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME);
+        session.removeAttribute(SESSION_CARD_NUMBER_ATTRIBUTE_NAME);
 
         try {
             authenticationService.findCard(atmCardNumber);
@@ -28,14 +30,14 @@ public class AuthenticationController {
             return "card-number-exceprion";
         }
 
-        session.setAttribute(AtmController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME, atmCardNumber);
+        session.setAttribute(SESSION_CARD_NUMBER_ATTRIBUTE_NAME, atmCardNumber);
         return "pin-code-screen";
     }
 
     @RequestMapping(value = "/pin", method = RequestMethod.POST)
     public String sendPinCode(@RequestParam String pinCode, Model model, HttpSession session) {
         try {
-            authenticationService.findCard((String) session.getAttribute(AtmController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME), pinCode);
+            authenticationService.findCard((String) session.getAttribute(SESSION_CARD_NUMBER_ATTRIBUTE_NAME), pinCode);
         } catch (AuthenticationException e) {
             model.addAttribute("error", e.getMessage());
             return "pin-code-screen";

@@ -10,18 +10,24 @@ let initNavigation = function () {
     }
 
     function initBalanceBtn() {
-        let exitBtn = document.body.querySelector(".balance-button");
+        let balanceBtn = document.body.querySelector(".balance-button");
+        balanceBtn.onclick = function() {
+            location.href='/cabinet/balance';
+        };
     }
 
     function initWithdrawBtn() {
-        let exitBtn = document.body.querySelector(".withdraw-button");
+        let withdrawBtn = document.body.querySelector(".withdraw-button");
+        withdrawBtn.onclick = function() {
+            location.href='/cabinet/withdraw';
+        };
     }
 
     function initExitBtn() {
         let exitBtn = document.body.querySelector(".exit-button");
         exitBtn.onclick = function() {
             basicFunctionality.clearHistoryAndGoToIndex();
-        }
+        };
     }
 };
 

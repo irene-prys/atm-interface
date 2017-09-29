@@ -25,14 +25,11 @@ public class CardController {
         return cardService.create(card);// todo: handle exceptions
     }
 
-    @PutMapping
-    public ResponseEntity<Card> update(Card card) {
-        if (card.getId() == null) {
-            return new ResponseEntity<>(card, HttpStatus.BAD_REQUEST);
-        }
-        Card cardToUpdate = cardService.find(card.getId());
-        if (cardToUpdate != null) {
-            return new ResponseEntity<>(cardService.update(card), HttpStatus.OK);
+    @PutMapping("/block")
+    public ResponseEntity<Card> updateBlockStatus(String cardNumber, Boolean blockStatus) {
+        Card card = cardService.find(cardNumber);
+        if (card != null) {
+            return new ResponseEntity<>(blockStatus ? cardService.block(cardNumber) : cardService.unblock(cardNumber), HttpStatus.OK);
         }
         return new ResponseEntity<>(card, HttpStatus.NOT_FOUND);
     }

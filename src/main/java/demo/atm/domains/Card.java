@@ -1,9 +1,7 @@
 package demo.atm.domains;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 public class Card {
@@ -20,6 +18,8 @@ public class Card {
     private boolean blocked;
     private boolean deleted;
     private int pinTries = 0;
+    @Embedded
+    private Balance balance;
 
     public Long getId() {
         return id;
@@ -75,5 +75,13 @@ public class Card {
 
     public void setPinTries(int pinTries) {
         this.pinTries = pinTries;
+    }
+
+    public Balance getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Balance balance) {
+        this.balance = balance;
     }
 }

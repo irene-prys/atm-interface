@@ -15,7 +15,6 @@ public class AtmApplication extends SpringBootServletInitializer {
         return application.sources(AtmApplication.class);
     }
 
-
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(AtmApplication.class, args);
         context.getBean(DefaultDataInitializer.class).initCards();

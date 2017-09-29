@@ -9,8 +9,6 @@ public interface CardService {
 
     Card create(String cardNumber, String pinCode);
 
-    Card update(Card card);
-
     Card delete(long cardId);
 
     Card find(String cardNumber);
