@@ -8,8 +8,6 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class AtmController {
-    public final static String SESSION_CARD_NUMBER_ATTRIBUTE_NAME = "cardNumber";
-
     @RequestMapping("/")//todo: first screen should be different: redirect to input card if needed
     public String index() {
         return "index";
@@ -17,7 +15,7 @@ public class AtmController {
 
     @RequestMapping("/cancel")
     public String cancel(HttpSession session) {
-        session.removeAttribute(SESSION_CARD_NUMBER_ATTRIBUTE_NAME);
+        session.invalidate();
         return "index";
     }
 

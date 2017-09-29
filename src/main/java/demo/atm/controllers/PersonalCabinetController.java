@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class PersonalCabinetController {
     private CardService cardService;
 
     @RequestMapping("/balance")
-    public String balance(Model model, HttpSession session) {
+    public String balance(Model model, HttpSession session) {// todo: add a filter for not authenticated users
         String cardNumber = (String) session.getAttribute(AuthenticationController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME);
         Card card = cardService.find(cardNumber);
         Date date = new Date();
@@ -35,8 +36,13 @@ public class PersonalCabinetController {
     }
 
     @RequestMapping("/withdraw")
-    public String withdraw() {
+    public String withdraw() {// todo: add a filter for not authenticated users
         //todo: add withdraw to history
         return "withdraw";
+    }
+
+    @RequestMapping(value = "/*", method = RequestMethod.GET)
+    public String defaultPage() {
+        return "index";
     }
 }
