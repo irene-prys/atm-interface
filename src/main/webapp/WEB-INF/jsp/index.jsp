@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script src="/js/keyboard-component.js"></script>
-    <script src="/js/keyboard.js"></script>
-    <script src="/js/atm-components-initializer.js"></script>
+    <script src="/js/basic.js" defer></script>
+    <script src="/js/keyboard/keyboard-component.js" defer></script>
+    <script src="/js/keyboard/keyboard.js" defer></script>
+    <script src="/js/keyboard/keyboard-form-initializer.js" defer></script>
 
 </head>
 <body>
