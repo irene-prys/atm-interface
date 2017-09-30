@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public class AuthenticationValidator {
 
-    public Optional<String> validateCardNumber(Card card) {
+    public Optional<String> validateCard(Card card) {
         if (card == null) {
             return Optional.of("Card not found");//todo: add i18n
         }

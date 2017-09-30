@@ -15,6 +15,7 @@ public class OperationHistory {
     private Date date;
     @ManyToOne
     private Card card;
+    private Money amount;
 
     public long getId() {
         return id;
@@ -46,5 +47,13 @@ public class OperationHistory {
 
     public void setCard(Card card) {
         this.card = card;
+    }
+
+    public Money getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Money amount) {
+        this.amount = amount;
     }
 }

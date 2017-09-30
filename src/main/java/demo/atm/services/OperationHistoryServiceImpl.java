@@ -24,6 +24,7 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
         operationHistory.setCard(card);
         operationHistory.setDate(date);// todo: timezone
         operationHistory.setOperationType(operationType);
+        operationHistory.setAmount(amount);
         return historyRepository.save(operationHistory);
     }
 

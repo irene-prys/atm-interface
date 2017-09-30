@@ -65,6 +65,7 @@ public class CardServiceImpl implements CardService {
     public Card block(String cardNumber) {
         Card card = find(cardNumber);
         card.setBlocked(true);
+        card.setPinTries(Card.MAX_NUMBER_OF_PIN_TRIES);
         return cardRepository.save(card);
     }
 

@@ -22,6 +22,28 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
 
         Card card = cardService.find(cardNumber);
+        validateCardAndPinCode(card, pinCode);
+
+        cardService.resetPinCodeTries(card);
+        return card;
+    }
+
+    @Override
+    public Card findCard(String cardNumber) throws AuthenticationException {
+        Card card = cardService.find(cardNumber);
+        Optional<String> validationError = authenticationValidator.validateCard(card);
+        if (validationError.isPresent()) {
+            throw new AuthenticationException(validationError.get());//todo: add i18n
+        }
+        return card;
+    }
+
+    private void validateCardAndPinCode(Card card, String pinCode) throws AuthenticationException {
+        Optional<String> cardValidationError = authenticationValidator.validateCard(card);
+        if (cardValidationError.isPresent()) {
+            throw new AuthenticationException(cardValidationError.get());
+        }
+
         Optional<String> validationError = authenticationValidator.validatePinCode(card, pinCode);
         if (validationError.isPresent()) {
             cardService.updatePinCodeTries(card);
@@ -31,17 +53,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 throw new AuthenticationException("Pin is incorrect. You made " + card.getPinTries() + " tries of " + Card.MAX_NUMBER_OF_PIN_TRIES);//todo: add i18n
             }
         }
-        cardService.resetPinCodeTries(card);
-        return card;
     }
 
-    @Override
-    public Card findCard(String cardNumber) throws AuthenticationException {
-        Card card = cardService.find(cardNumber);
-        Optional<String> validationError = authenticationValidator.validateCardNumber(card);
-        if (validationError.isPresent()) {
-            throw new AuthenticationException(validationError.get());//todo: add i18n
-        }
-        return card;
-    }
 }

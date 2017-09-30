@@ -20,16 +20,13 @@ public class CardController {
         return cardService.findAll();
     }
 
-    @PostMapping
-    public ResponseEntity<Card> create(Card card) {
-        return new ResponseEntity<Card>(cardService.create(card), HttpStatus.OK);// todo: handle exceptions
-    }
-
-    @PutMapping("/block")
-    public ResponseEntity<Card> updateBlockStatus(String cardNumber, Boolean blockStatus) {
-        Card card = cardService.find(cardNumber);
+    @PutMapping("/block/{id}/{blockStatus}")
+    public ResponseEntity<Card> updateBlockStatus(@PathVariable("id") Long id,
+                                                  @PathVariable("blockStatus") Boolean blockStatus) {
+        Card card = cardService.find(id);
         if (card != null) {
-            return new ResponseEntity<>(blockStatus ? cardService.block(cardNumber) : cardService.unblock(cardNumber), HttpStatus.OK);
+            return new ResponseEntity<>(blockStatus ? cardService.block(card.getCardNumber()) :
+                    cardService.unblock(card.getCardNumber()), HttpStatus.OK);
         }
         return new ResponseEntity<>(card, HttpStatus.NOT_FOUND);
     }
@@ -43,6 +40,4 @@ public class CardController {
         }
         return new ResponseEntity<>(cardToDelete, cardToDelete == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
-
-
 }
