@@ -24,7 +24,7 @@ public class AuthenticationServiceTest {
 
     @Test
     public void shouldIncrementTries() throws AuthenticationException {
-        String cardNumber = "1111-1234-567-8900";
+        String cardNumber = "2222-2222-2222-0000";
         Card card = cardService.create(newCard(cardNumber, "2234"));
         assertEquals(0, card.getPinTries());
         assertFalse(card.isBlocked());
@@ -50,7 +50,7 @@ public class AuthenticationServiceTest {
 
     @Test
     public void shouldBlockCardAfterThresholdTries() {
-        String cardNumber = "1111-1234-567-8901";
+        String cardNumber = "2222-2222-2222-0001";
         Card card = newCard(cardNumber, "2234");
         card.setPinTries(Card.MAX_NUMBER_OF_PIN_TRIES);
         card = cardService.create(card);

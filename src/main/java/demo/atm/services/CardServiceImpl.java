@@ -47,7 +47,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card find(String cardNumber) {// todo: make optional?
+    public Card find(String cardNumber) {
         return cardRepository.findByCardNumber(cardNumber);
     }
 
@@ -62,14 +62,14 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card block(String cardNumber) { // todo: add test
+    public Card block(String cardNumber) {
         Card card = find(cardNumber);
         card.setBlocked(true);
         return cardRepository.save(card);
     }
 
     @Override
-    public Card unblock(String cardNumber) {// todo: add test
+    public Card unblock(String cardNumber) {
         Card card = find(cardNumber);
         card.setBlocked(false);
         card.setPinTries(0);
@@ -102,7 +102,7 @@ public class CardServiceImpl implements CardService {
         return cardRepository.save(card);
     }
 
-    private String generateSalt() {// todo: think over moving to card
+    private String generateSalt() {
         return UUID.randomUUID().toString();
     }
 }

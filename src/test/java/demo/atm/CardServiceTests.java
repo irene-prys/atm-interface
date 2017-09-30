@@ -187,6 +187,27 @@ public class CardServiceTests {
         cardService.create(cardNumber, null);
     }
 
+    @Test
+    public void shouldBlockCard() {
+        Card card = cardService.create("1111-1111-1111-0000", "1234");
+        assertFalse(card.isBlocked());
+        cardService.block(card.getCardNumber());
+        card = cardService.find(card.getCardNumber());
+        assertTrue(card.isBlocked());
+    }
+
+    @Test
+    public void shouldUnblockCard() {
+        Card card = newCard("1111-1111-1111-0001", "1234");
+        card.setBlocked(true);
+        cardService.create(card);
+        assertTrue(card.isBlocked());
+
+        cardService.unblock(card.getCardNumber());
+        card = cardService.find(card.getCardNumber());
+        assertFalse(card.isBlocked());
+    }
+
     private Card newCard(Long id, String cardNumber,
                          String pinCode, String salt,
                          boolean blocked, boolean deleted) {
