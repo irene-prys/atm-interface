@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -39,6 +40,8 @@ public class OperationHistoryServiceTest {
         assertTrue(foundHistory.isPresent());
         assertTrue(foundHistory.get().getCard().getCardNumber().equals(card.getCardNumber()));
         assertTrue(foundHistory.get().getOperationType() == OperationType.BALANCE);
+        assertTrue(foundHistory.get().getAmount().getAmount().compareTo(card.getBalance().getAmount()) == 0);
+        assertEquals(card.getBalance().getCurrency().getCurrencyCode(), foundHistory.get().getAmount().getCurrency().getCurrencyCode());
         assertNotNull(foundHistory.get().getDate());
     }
 

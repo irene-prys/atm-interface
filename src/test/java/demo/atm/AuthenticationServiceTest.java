@@ -39,6 +39,22 @@ public class AuthenticationServiceTest {
     }
 
     @Test(expected = AuthenticationException.class)
+    public void shouldThrowExceptionIfCardDeleted() throws AuthenticationException {
+        Card card = newCard("2222-2222-2222-0001", "2234");
+        card.setDeleted(true);
+        cardService.create(card);
+        authenticationService.findCardAndCheckPinCode("", "1111");
+    }
+
+    @Test(expected = AuthenticationException.class)
+    public void shouldThrowExceptionIfCardBlocked() throws AuthenticationException {
+        Card card = newCard("2222-2222-2222-0002", "2234");
+        card.setBlocked(true);
+        cardService.create(card);
+        authenticationService.findCardAndCheckPinCode("", "1111");
+    }
+
+    @Test(expected = AuthenticationException.class)
     public void shouldThrowExceptionWhenTriesToFindByPinCodeAndCardNumberIsEmptyString() throws AuthenticationException {
         authenticationService.findCardAndCheckPinCode("", "1111");
     }

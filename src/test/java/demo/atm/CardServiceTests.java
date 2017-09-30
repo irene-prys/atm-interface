@@ -106,6 +106,7 @@ public class CardServiceTests {
         cardService.block(card.getCardNumber());
         card = cardService.find(card.getId());
         assertTrue(card.isBlocked());
+        assertEquals(Card.MAX_NUMBER_OF_PIN_TRIES, card.getPinTries());
     }
 
     @Test
@@ -120,6 +121,7 @@ public class CardServiceTests {
         cardService.unblock(card.getCardNumber());
         card = cardService.find(card.getId());
         assertFalse(card.isBlocked());
+        assertEquals(0, card.getPinTries());
     }
 
     @Test
