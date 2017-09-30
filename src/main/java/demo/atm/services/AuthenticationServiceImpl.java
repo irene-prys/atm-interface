@@ -15,7 +15,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private AuthenticationValidator authenticationValidator;
 
-    public Card findCard(String cardNumber, String pinCode) throws AuthenticationException {
+    @Override
+    public Card findCardAndCheckPinCode(String cardNumber, String pinCode) throws AuthenticationException {
         if (cardNumber == null || cardNumber.isEmpty()) {
             throw new AuthenticationException("Card number is not defined");//todo: add i18n
         }
@@ -34,6 +35,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return card;
     }
 
+    @Override
     public Card findCard(String cardNumber) throws AuthenticationException {
         Card card = cardService.find(cardNumber);
         Optional<String> validationError = authenticationValidator.validateCardNumber(card);

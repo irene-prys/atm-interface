@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class OperationHistoryServiceImpl implements OperationHistoryService {
@@ -24,5 +25,10 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
         operationHistory.setDate(date);// todo: timezone
         operationHistory.setOperationType(operationType);
         return historyRepository.save(operationHistory);
+    }
+
+    @Override
+    public List<OperationHistory> findAll() {
+        return historyRepository.findAll();
     }
 }

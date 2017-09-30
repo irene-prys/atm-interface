@@ -20,7 +20,6 @@ public class CardServiceTests {
     @Autowired
     private CardService cardService;
 
-    // creation
     @Test
     public void shouldCreateCardAndThenFindItById() {
         String cardNumber = "1234-5678-9012-3450";
@@ -32,10 +31,12 @@ public class CardServiceTests {
 
         card = cardService.find(card.getId());
         assertEquals(cardNumber, card.getCardNumber());
-        assertEquals(pinCode, card.getPinCode());// todo: wrong! need to hash + solid
         assertFalse(card.isBlocked());
         assertFalse(card.isDeleted());
         assertNotNull(card.getPinCodeSalt());
+        assertNotNull(card.getPinCode());
+        assertNotEquals("", card.getPinCode());
+        assertNotEquals(pinCode, card.getPinCode());
     }
 
     @Test
@@ -60,7 +61,9 @@ public class CardServiceTests {
 
         card = cardService.find(card.getId());
         assertEquals(cardNumber, card.getCardNumber());
-        assertEquals(pinCode, card.getPinCode());// todo: wrong! need to hash + solid
+        assertNotNull(card.getPinCode());
+        assertNotEquals(pinCode, card.getPinCode());
+        assertNotEquals("", card.getPinCode());
     }
 
     @Test(expected = Exception.class)// todo: throw custom exception
@@ -75,14 +78,9 @@ public class CardServiceTests {
     public void shouldNotAllowCreateCardIfItExists() {
         String cardNumber = "1234-5678-9012-3454";
         String pinCode = "3221";
-        Card card = cardService.create(cardNumber, pinCode);
-        card = cardService.create(cardNumber, pinCode);
-        cardService.create(card);
+        cardService.create(cardNumber, pinCode);
+        cardService.create(cardNumber, pinCode);
     }
-
-    // check all not null fields
-    // check number has length and numbers inside
-    //todo: test pin tries
 
     @Test
     public void shouldMarkAsDeleted() {
@@ -177,14 +175,17 @@ public class CardServiceTests {
         assertTrue(foundCards.stream().filter(c->cardNumbers.contains(c.getCardNumber())).count() == cardNumbers.size());
     }
 
-    //todo: list
+    @Test(expected = Exception.class)// todo: throw custom exception
+    public void shouldNotAllowCreateCardWithoutCardNumber() {
+        String pinCode = "3221";
+        cardService.create(null, pinCode);
+    }
 
-    //todo: should store pinCode as hash
-    // todo: should verify pinCode of card
-
-
-    // todo: verify card number
-    //todo: verify pin
+    @Test(expected = Exception.class)// todo: throw custom exception
+    public void shouldNotAllowCreateCardWithoutPinCode() {
+        String cardNumber = "1234-5678-9012-3454";
+        cardService.create(cardNumber, null);
+    }
 
     private Card newCard(Long id, String cardNumber,
                          String pinCode, String salt,

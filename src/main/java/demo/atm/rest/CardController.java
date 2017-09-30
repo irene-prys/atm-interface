@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cards")
+@RequestMapping("/rest/cards")
 public class CardController {
     @Autowired
     private CardService cardService;
@@ -21,8 +21,8 @@ public class CardController {
     }
 
     @PostMapping
-    public Card create(Card card) {
-        return cardService.create(card);// todo: handle exceptions
+    public ResponseEntity<Card> create(Card card) {
+        return new ResponseEntity<Card>(cardService.create(card), HttpStatus.OK);// todo: handle exceptions
     }
 
     @PutMapping("/block")
@@ -37,7 +37,7 @@ public class CardController {
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<Card> delete(@PathVariable("id") long id) {
-        Card cardToDelete = cardService.find(id);// todo: move this logic to service; not sure we cant remove finding
+        Card cardToDelete = cardService.find(id);
         if (cardToDelete != null) {
             cardService.delete(id);
         }
