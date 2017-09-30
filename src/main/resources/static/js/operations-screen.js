@@ -1,4 +1,4 @@
-let initNavigation = function () {
+let initOperationsScreenNavigation = function () {
     let basicFunctionality = basicAtmFunctions();
 
     initButtons();
@@ -31,4 +31,4 @@ let initNavigation = function () {
     }
 };
 
-initNavigation();
+initOperationsScreenNavigation();

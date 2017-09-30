@@ -8,7 +8,7 @@ let loadKeyboard = function () {
     }
 
     function generateKeyboard() {
-        let keyBoardGroupContainer = document.body.querySelector('.atm-keyboard-group-container');// todo: handle situation with several keyboards on the page
+        let keyBoardGroupContainer = document.body.querySelector('.keyboard-group-container');// todo: handle situation with several keyboards on the page
         let keyboardInputComponent = keyBoardGroupContainer.querySelector('.atm-keyboard-input');
         addInputRestrictions(keyboardInputComponent);
 

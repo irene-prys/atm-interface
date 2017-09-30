@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <div class="container atm-keyboard-group-container mt-4">
+    <div class="container keyboard-group-container mt-4">
         <div class="container">
           <form action="/card/number" method="POST" class="atm-auth-form">
             <div class="form-group row">
@@ -19,15 +19,15 @@
               <div class="col-sm-4">
                 <div class="input-group">
                   <input class="form-control atm-keyboard-input atm-card-number" type="text"
-                         placeholder="1111-1111-1111-1111" maxlength='19'
+                         placeholder="1111-1111-1111-1111" maxlength='19' minlength='19'
                          name="atmCardNumber"
                          id="atmCardNumber">
                   <span class="input-group-btn">
-                    <button class="btn btn-secondary clear-atm-input" type="button" for="atmCardNumber">Clear</button>
+                    <button class="btn btn-secondary clear-keyboard-form-input" type="button" for="atmCardNumber">Clear</button>
                   </span>
                 </div>
               </div>
-              <button type="submit" class="btn btn-success atm-send-btn">Send</button>
+              <button type="submit" class="btn btn-success keyboard-form-send-btn">Send</button>
             </div>
           </form>
         </div>
