@@ -66,7 +66,7 @@ public class CardServiceTests {
         assertNotEquals("", card.getPinCode());
     }
 
-    @Test(expected = Exception.class)// todo: throw custom exception
+    @Test(expected = Exception.class)
     public void shouldNotAllowCreateCardIfItExistsByNumberAndPin() {
         String cardNumber = "1234-5678-9012-3453";
         String pinCode = "3221";
@@ -74,7 +74,7 @@ public class CardServiceTests {
         cardService.create(cardNumber, pinCode);
     }
 
-    @Test(expected = Exception.class)// todo: throw custom exception
+    @Test(expected = Exception.class)
     public void shouldNotAllowCreateCardIfItExists() {
         String cardNumber = "1234-5678-9012-3454";
         String pinCode = "3221";
@@ -177,13 +177,13 @@ public class CardServiceTests {
         assertTrue(foundCards.stream().filter(c->cardNumbers.contains(c.getCardNumber())).count() == cardNumbers.size());
     }
 
-    @Test(expected = Exception.class)// todo: throw custom exception
+    @Test(expected = Exception.class)
     public void shouldNotAllowCreateCardWithoutCardNumber() {
         String pinCode = "3221";
         cardService.create(null, pinCode);
     }
 
-    @Test(expected = Exception.class)// todo: throw custom exception
+    @Test(expected = Exception.class)
     public void shouldNotAllowCreateCardWithoutPinCode() {
         String cardNumber = "1234-5678-9012-3454";
         cardService.create(cardNumber, null);

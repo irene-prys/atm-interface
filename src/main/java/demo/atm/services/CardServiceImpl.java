@@ -27,7 +27,6 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Card create(String cardNumber, String pinCode) {
-        //todo: validate fields, check if exists
         Card card = new Card();
         card.setCardNumber(cardNumber);
 
@@ -40,7 +39,6 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Card delete(long cardId) {
-        //todo: handle situation when card not exists
         Card card = cardRepository.findOne(cardId);
         card.setDeleted(true);
         return cardRepository.save(card);

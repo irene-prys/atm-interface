@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class AtmController {
-    @RequestMapping("/")//todo: first screen should be different: redirect to input card if needed
+    @RequestMapping("/")
     public String index() {
         return "index";
     }

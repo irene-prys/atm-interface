@@ -22,7 +22,7 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
     public OperationHistory addNewRecord(Card card, OperationType operationType, Date date, Money amount) {
         OperationHistory operationHistory = new OperationHistory();
         operationHistory.setCard(card);
-        operationHistory.setDate(date);// todo: timezone
+        operationHistory.setDate(date);// todo: think over timezone
         operationHistory.setOperationType(operationType);
         operationHistory.setAmount(amount);
         return historyRepository.save(operationHistory);
