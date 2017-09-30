@@ -18,15 +18,15 @@ public class DefaultDataInitializer {
         createNewActiveCard("1111-1111-1111-1111", "1111", "1000");
         createNewActiveCard("1111-2222-3333-4444", "1234", "200");
         createNewActiveCard("2222-2222-2222-2222", "2222", "20000");
-        createNewActiveCard("1234-5678-9012-3451", "5467", "300");
-        createNewActiveCard("5676-8765-9432-3245", "3232", "600");
+        createNewActiveCard("3333-3333-3333-3333", "3333", "300");
+        createNewActiveCard("4444-4444-4444-4444", "4444", "600");
 
         //create blocked cards:
-        createNewCard("3333-3333-3333-3333", "3333", true, false, "300");
-        createNewCard("1234-5678-9012-3456", "1234", true, false, "250");
+        createNewCard("5555-5555-5555-5555", "5555", true, false, "300");
+        createNewCard("9999-9999-9999-9999", "9999", true, false, "250");
 
         //create deleted cards
-        createNewCard("5555-5555-5555-5555", "5555", true, false, "1000");
+        createNewCard("0000-0000-0000-0000", "0000", true, false, "1000");
     }
 
     private void createNewCard(String cardNumber, String pinCode, boolean blocked, boolean deleted, String amount) {

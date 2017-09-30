@@ -10,5 +10,6 @@ import java.util.List;
 
 public interface OperationHistoryService {
     OperationHistory addNewRecord(Card card, OperationType operationType, Date date, Money amount);
+
     List<OperationHistory> findAll();
 }

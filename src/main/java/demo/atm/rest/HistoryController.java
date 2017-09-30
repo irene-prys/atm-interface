@@ -1,8 +1,6 @@
 package demo.atm.rest;
 
-import demo.atm.domains.Card;
 import demo.atm.domains.OperationHistory;
-import demo.atm.services.CardService;
 import demo.atm.services.OperationHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -12,7 +12,6 @@ public class PasswordGenerator {
     private final static int KEY_LENGTH = 100;
     private final static String ALGORITHM = "PBKDF2WithHmacSHA512";
 
-
     public static String hashPassword(final String password, String salt) {
         try {
             SecretKeyFactory skf = SecretKeyFactory.getInstance(ALGORITHM);
@@ -25,5 +24,4 @@ public class PasswordGenerator {
             throw new RuntimeException(e);// todo: handle it correctly
         }
     }
-
 }
