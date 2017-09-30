@@ -22,8 +22,12 @@ public class OperationsController {
     private CardService cardService;
 
     @RequestMapping("/balance")
-    public String balance(Model model, HttpSession session) {// todo: add a filter for not authenticated users
+    public String balance(Model model, HttpSession session) {
         String cardNumber = (String) session.getAttribute(AuthenticationController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME);
+        if(cardNumber == null) {
+            return "index";
+        }
+
         Card card = cardService.find(cardNumber);
         Date date = new Date();
         historyService.addNewRecord(card, OperationType.BALANCE, date, card.getBalance());
@@ -36,7 +40,11 @@ public class OperationsController {
     }
 
     @RequestMapping("/withdraw")
-    public String withdraw() {// todo: add a filter for not authenticated users
+    public String withdraw(HttpSession session) {
+        String cardNumber = (String) session.getAttribute(AuthenticationController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME);
+        if(cardNumber == null) {
+            return "index";
+        }
         return "withdraw";
     }
 

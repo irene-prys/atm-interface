@@ -32,6 +32,10 @@ public class WithdrawalController {
     @RequestMapping(value = "/sum", method = RequestMethod.POST)
     public String removeSum(@RequestParam String withdrawAmount, Model model, HttpSession session) {
         String cardNumber = (String) session.getAttribute(AuthenticationController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME);
+        if(cardNumber == null) {
+            return "index";
+        }
+
         Card card = cardService.find(cardNumber);
 
         Optional<String> error = validator.validateWithdraw(card.getBalance(), withdrawAmount);
@@ -57,5 +61,10 @@ public class WithdrawalController {
         model.addAttribute("withdrawalAmount", withdrawAmount);
 
         return "operation-report";
+    }
+
+    @RequestMapping(value = "/*", method = RequestMethod.GET)
+    public String defaultPage() {
+        return "index";
     }
 }

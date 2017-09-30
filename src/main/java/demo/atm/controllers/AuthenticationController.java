@@ -36,8 +36,13 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/pin", method = RequestMethod.POST)
     public String sendPinCode(@RequestParam String pinCode, Model model, HttpSession session) {
+        String cardNumber = (String) session.getAttribute(SESSION_CARD_NUMBER_ATTRIBUTE_NAME);
+        if (cardNumber == null) {
+            return "index";
+        }
+
         try {
-            authenticationService.findCardAndCheckPinCode((String) session.getAttribute(SESSION_CARD_NUMBER_ATTRIBUTE_NAME), pinCode);
+            authenticationService.findCardAndCheckPinCode(cardNumber, pinCode);
         } catch (AuthenticationException e) {
             model.addAttribute("error", e.getMessage());
             return "pin-code-screen";
