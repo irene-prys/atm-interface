@@ -1,7 +1,6 @@
 package demo.atm.domains;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 public class Card {
@@ -19,7 +18,7 @@ public class Card {
     private boolean deleted;
     private int pinTries = 0;
     @Embedded
-    private Balance balance;
+    private Money balance;
 
     public Long getId() {
         return id;
@@ -77,11 +76,11 @@ public class Card {
         this.pinTries = pinTries;
     }
 
-    public Balance getBalance() {
+    public Money getBalance() {
         return balance;
     }
 
-    public void setBalance(Balance balance) {
+    public void setBalance(Money balance) {
         this.balance = balance;
     }
 }

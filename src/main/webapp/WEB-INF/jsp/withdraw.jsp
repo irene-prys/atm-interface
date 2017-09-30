@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -12,6 +13,9 @@
 
 </head>
 <body>
+    <c:if test="${not empty error}">
+        <div class="alert alert-danger">${error}</div>
+    </c:if>
     <div class="container keyboard-group-container mt-4">
         <div class="container">
           <form action="/withdraw/sum" method="POST" class="atm-withdraw-form">

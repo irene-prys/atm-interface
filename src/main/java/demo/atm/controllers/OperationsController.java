@@ -26,7 +26,7 @@ public class OperationsController {
         String cardNumber = (String) session.getAttribute(AuthenticationController.SESSION_CARD_NUMBER_ATTRIBUTE_NAME);
         Card card = cardService.find(cardNumber);
         Date date = new Date();
-        historyService.addNewRecord(card, OperationType.BALANCE, date);
+        historyService.addNewRecord(card, OperationType.BALANCE, date, card.getBalance());
 
         model.addAttribute("cardBalance", card.getBalance().getAmount().toString());
         model.addAttribute("balanceCurrency", card.getBalance().getCurrency().toString());
@@ -37,7 +37,6 @@ public class OperationsController {
 
     @RequestMapping("/withdraw")
     public String withdraw() {// todo: add a filter for not authenticated users
-        //todo: add withdraw to history
         return "withdraw";
     }
 

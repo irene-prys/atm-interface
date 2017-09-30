@@ -1,7 +1,7 @@
 package demo.atm.utils;
 
-import demo.atm.domains.Balance;
 import demo.atm.domains.Card;
+import demo.atm.domains.Money;
 import demo.atm.services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,7 +36,7 @@ public class DefaultDataInitializer {
         card.setBlocked(blocked);
         card.setDeleted(deleted);
 
-        Balance balance = new Balance();
+        Money balance = new Money();
         balance.setCurrency(Currency.getInstance("USD"));
         balance.setAmount(new BigDecimal(amount));
         card.setBalance(balance);

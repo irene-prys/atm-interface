@@ -1,6 +1,7 @@
 package demo.atm.services;
 
 import demo.atm.domains.Card;
+import demo.atm.exceptions.MoneyOperationException;
 
 import java.util.List;
 
@@ -24,4 +25,6 @@ public interface CardService {
     void updatePinCodeTries(Card card);
 
     void resetPinCodeTries(Card card);
+
+    Card withdraw(Card card, String withdrawAmount) throws MoneyOperationException;
 }

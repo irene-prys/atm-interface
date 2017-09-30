@@ -1,11 +1,15 @@
 package demo.atm.services;
 
 import demo.atm.domains.Card;
+import demo.atm.domains.Money;
+import demo.atm.exceptions.MoneyOperationException;
 import demo.atm.repositories.CardRepository;
+import demo.atm.utils.MoneyOperationsUtil;
 import demo.atm.utils.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -67,7 +71,7 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card unblock(String cardNumber) {// todo: add test
         Card card = find(cardNumber);
-        card.setBlocked(true);
+        card.setBlocked(false);
         card.setPinTries(0);
         return cardRepository.save(card);
     }
@@ -86,6 +90,16 @@ public class CardServiceImpl implements CardService {
     public void resetPinCodeTries(Card card) {
         card.setPinTries(0);
         cardRepository.save(card);
+    }
+
+    @Override
+    public Card withdraw(Card card, String withdrawAmount) throws MoneyOperationException {
+        Money withdrawalMoney = new Money();
+        withdrawalMoney.setCurrency(card.getBalance().getCurrency());
+        withdrawalMoney.setAmount(new BigDecimal(withdrawAmount));
+        Money result = MoneyOperationsUtil.sub(card.getBalance(), withdrawalMoney);
+        card.setBalance(result);
+        return cardRepository.save(card);
     }
 
     private String generateSalt() {// todo: think over moving to card

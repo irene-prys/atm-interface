@@ -1,6 +1,7 @@
 package demo.atm.services;
 
 import demo.atm.domains.Card;
+import demo.atm.domains.Money;
 import demo.atm.domains.OperationHistory;
 import demo.atm.domains.OperationType;
 import demo.atm.repositories.OperationHistoryRepository;
@@ -17,7 +18,7 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
     private CardService cardService;
 
     @Override
-    public OperationHistory addNewRecord(Card card, OperationType operationType, Date date) {
+    public OperationHistory addNewRecord(Card card, OperationType operationType, Date date, Money amount) {
         OperationHistory operationHistory = new OperationHistory();
         operationHistory.setCard(card);
         operationHistory.setDate(date);// todo: timezone
