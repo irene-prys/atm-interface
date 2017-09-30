@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 @Controller
-@RequestMapping("/cabinet")
-public class PersonalCabinetController {
+@RequestMapping("/operations")
+public class OperationsController {
     @Autowired
     private OperationHistoryService historyService;
     @Autowired

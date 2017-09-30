@@ -12,14 +12,14 @@ let initNavigation = function () {
     function initBalanceBtn() {
         let balanceBtn = document.body.querySelector(".balance-button");
         balanceBtn.onclick = function() {
-            location.href='/cabinet/balance';
+            location.href='/operations/balance';
         };
     }
 
     function initWithdrawBtn() {
         let withdrawBtn = document.body.querySelector(".withdraw-button");
         withdrawBtn.onclick = function() {
-            location.href='/cabinet/withdraw';
+            location.href='/operations/withdraw';
         };
     }
 

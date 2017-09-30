@@ -42,7 +42,7 @@ public class AuthenticationController {
             model.addAttribute("error", e.getMessage());
             return "pin-code-screen";
         }
-        return "cabinet";
+        return "operations";
     }
 
     @RequestMapping(value = "/*", method = RequestMethod.GET)
